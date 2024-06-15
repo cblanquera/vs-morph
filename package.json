@@ -1,0 +1,43 @@
+{
+	"name": "vs-morph",
+	"description": "Wraps the vscode language tools API",
+	"version": "0.0.1",
+	"author": "Chris <chris@incept.asia>",
+	"license": "MIT",
+	"engines": {
+		"node": "*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/cblanquera/vs-morph"
+	},
+	"scripts": {
+		"build": "tsc",
+		"test": "yarn build && yarn test:build && yarn test:files && yarn test:boot",
+		"test:build": "tsc --project tsconfig.test.json",
+		"test:files": "yarn test:files:package && yarn test:files:grammar && yarn test:files:lang",
+		"test:files:package": "cp ./tests/src/project/package.json ./tests/.build/project/package.json",
+		"test:files:grammar": "cp ./tests/src/project/schema.grammar.json ./tests/.build/project/schema.grammar.json",
+		"test:files:lang": "cp ./tests/src/project/schema.language.json ./tests/.build/project/schema.language.json",
+		"test:boot": "sh tests/boot.sh"
+	},
+	"dependencies": {
+		"@blanquera/types": "1.0.2",
+		"vscode-languageclient": "9.0.1",
+		"vscode-languageserver": "8.1.0",
+		"vscode-languageserver-textdocument": "1.0.8"
+	},
+	"devDependencies": {
+		"@types/mocha": "9.1.1",
+		"@types/node": "20.11.16",
+		"@types/vscode": "1.90.0",
+		"@typescript-eslint/eslint-plugin": "5.62.0",
+		"@typescript-eslint/parser": "5.61.0",
+		"@vscode/test-electron": "2.4.0",
+    "eslint": "8.57.0",
+		"mocha": "9.2.2",
+		"ts-mocha": "9.0.2",
+		"ts-node": "10.9.2",
+    "typescript": "5.3.3"
+	}
+}

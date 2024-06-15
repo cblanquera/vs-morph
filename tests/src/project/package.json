@@ -1,0 +1,55 @@
+{
+  "name": "custom-langugage",
+  "displayName": "Custom Language",
+  "description": "Adds syntax highlighting, formatting, auto-completion, jump-to-definition and linting for a custom.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "publisher": "customauthor",
+  "main": "./client",
+  "engines": {
+    "vscode": "^1.75.0"
+	},
+  "activationEvents": [
+		"onLanguage:plaintext"
+	],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Basic configuration",
+      "properties": {
+        "languageServerExample.maxNumberOfProblems": {
+          "scope": "resource",
+          "type": "number",
+          "default": 100,
+          "description": "Controls the maximum number of problems produced by the server."
+        },
+        "languageServerExample.trace.server": {
+          "scope": "window",
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the language server."
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "custom",
+        "aliases": [ "Custom", "custom" ],
+        "extensions": [ ".custom" ],
+        "configuration": "./schema.language.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "custom",
+        "scopeName": "source.custom",
+        "path": "./schema.grammar.json"
+      }
+    ]
+  }
+}
